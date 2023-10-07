@@ -1,0 +1,13 @@
+node_modules/*
+build
+babel.config.js
+tailwind.config.js
+next.config.js
+postcss.config.js
+supabase/*
+**/*.config.js
+.yarn/*
+.idea/*
+.next/*
+.pnp.*
+public/*
