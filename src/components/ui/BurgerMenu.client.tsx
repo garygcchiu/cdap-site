@@ -17,7 +17,7 @@ interface BurgerMenuItemProps {
     isOpen?: boolean;
 }
 
-export const BurgerMenu = ({ showLabel, children }: BurgerMenuProps) => {
+export const BurgerMenuClient = ({ showLabel, children }: BurgerMenuProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [portalElement, setPortalElement] = useState<Element | null>(null);
 
@@ -58,7 +58,7 @@ export const BurgerMenu = ({ showLabel, children }: BurgerMenuProps) => {
                     />
                 </button>
             </div>
-            {portalElement
+            {portalElement && isOpen
                 ? ReactDOM.createPortal(
                       <>
                           <div
@@ -114,4 +114,4 @@ const Item: FC<BurgerMenuItemProps> = ({ children, style, isOpen }) => {
     );
 };
 
-BurgerMenu.Item = Item;
+BurgerMenuClient.Item = Item;

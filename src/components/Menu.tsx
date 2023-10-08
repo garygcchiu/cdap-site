@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BurgerMenu } from '@/components/ui/BurgerMenu';
+import { BurgerMenuClient } from '@/components/ui/BurgerMenu.client';
 import { useInView } from 'react-intersection-observer';
 import { clsx } from 'clsx';
 
@@ -29,16 +29,19 @@ export const Menu = () => {
                     inView ? 'mt-[10vh] opacity-100' : 'mt-0 opacity-0'
                 )}
             >
-                <BurgerMenu>
+                <BurgerMenuClient>
                     {menuItems.map((item, index) => (
-                        <BurgerMenu.Item key={index} style={{ animationDelay: `${index * 100}ms` }}>
+                        <BurgerMenuClient.Item
+                            key={index}
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
                             <span className={'mr-4 text-gray-300'}>{'0' + (index + 1)}.</span>
                             <Link href={item.link} className={'text-gray-300 text-3xl uppercase'}>
                                 {item.title}
                             </Link>
-                        </BurgerMenu.Item>
+                        </BurgerMenuClient.Item>
                     ))}
-                </BurgerMenu>
+                </BurgerMenuClient>
             </div>
         </>
     );

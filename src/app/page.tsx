@@ -103,16 +103,21 @@ const subheroText = [
     'Located in Los Angeles, California and Tucson, Arizona.',
 ];
 
+const footerText = {};
+
 export default function Home() {
     return (
         <div>
             <MainNav items={navData} />
-            <main>
-                <div id="portal" />
-                <Hero text={heroText} />
-                <SubHero text={subheroText} />
-                <section className={'h-screen '}></section>
-            </main>
+            <div className="bg-white z-[1] relative mb-[600px] md:mb-[400px]">
+                <main>
+                    <div id="portal" />
+                    <Hero text={heroText} />
+                    <SubHero text={subheroText} />
+                    <section className={'h-screen '}></section>
+                </main>
+            </div>
+            <Footer />
         </div>
     );
 }

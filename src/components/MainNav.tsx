@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { BurgerMenu } from '@/components/ui/BurgerMenu';
-import { InView, useInView } from 'react-intersection-observer';
+import { BurgerMenuClient } from '@/components/ui/BurgerMenu.client';
+import { useInView } from 'react-intersection-observer';
 import { clsx } from 'clsx';
 import { useEffect, useState } from 'react';
 import { InViewAnchor } from '@/components/ui/InViewAnchor';
@@ -52,12 +52,16 @@ export const MainNav = ({ items }: MainNavProps) => {
     }, []);
 
     return (
-        <header className={'fixed top-0 left-0 right-0 bottom-0 z-10'}>
-            <nav className={'container flex justify-between py-8 w-full'}>
+        <header className={'fixed top-0 left-0 right-0 z-10'}>
+            <nav className={'container flex justify-between py-8 w-full z-10'}>
                 <div
                     className={clsx(
                         'text-3xl font-extrabold transition-[transform,opacity] duration-500',
-                        isScrolled ? '-translate-y-4 opacity-0' : 'translate-y-0 opacity-100'
+                        isScrolled
+                            ? '-translate-y-4 opacity-0'
+                            : inView
+                            ? 'translate-y-0 opacity-100'
+                            : '-translate-y-4 opacity-0'
                     )}
                 >
                     BRANDING
@@ -76,18 +80,18 @@ export const MainNav = ({ items }: MainNavProps) => {
                 </div>
                 {/* Mobile Navigation */}
                 <div className={'md:hidden self-center'}>
-                    <BurgerMenu>
+                    <BurgerMenuClient>
                         {items.map((i, index) => (
-                            <BurgerMenu.Item
+                            <BurgerMenuClient.Item
                                 key={index}
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <Link href={i.href} className="block py-2">
                                     {i.title}
                                 </Link>
-                            </BurgerMenu.Item>
+                            </BurgerMenuClient.Item>
                         ))}
-                    </BurgerMenu>
+                    </BurgerMenuClient>
                 </div>
             </nav>
             <InViewAnchor ref={ref} />
