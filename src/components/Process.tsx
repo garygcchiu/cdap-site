@@ -71,9 +71,9 @@ export const Process = ({ text }: ProcessProps) => {
                             />
                         ))}
                     </div>
-                    <div className={'relative mb-[calc(35vh+200px)]'}>
+                    <div className={'relative mb-[calc(10vh+200px)] md:mb-[calc(35vh+200px)]'}>
                         {/* Adjusted the margin-bottom */}
-                        <div className="sticky top-1/4 mt-32">
+                        <div className="sticky top-1/4 mt-4 md:mt-32">
                             {/* Adjusted the top class */}
                             {/* Back Layer (always visible) */}
                             <div className="absolute top-0 left-0">
