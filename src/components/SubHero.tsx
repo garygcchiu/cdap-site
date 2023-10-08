@@ -7,7 +7,7 @@ interface SubHeroProps {
 
 export const SubHero = ({ text }: SubHeroProps) => {
     return (
-        <section className={'pt-[100px] container'}>
+        <section className={'py-[100px] container'}>
             <div className={'max-w-2xl flex flex-col'}>
                 <AnimateIn animationType={AnimationType.FADE_IN_TRANSLATE_UP} delay={'500ms'}>
                     {text.map((t, index) => (

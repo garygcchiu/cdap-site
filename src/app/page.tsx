@@ -11,6 +11,7 @@ import { Footer } from '@/components/Footer';
 import { CenteredCTA } from '@/components/CenteredCTA';
 import { libre } from '@/app/fonts';
 import { SubHero } from '@/components/SubHero';
+import { Process } from '@/components/Process';
 
 const tickerItems: string[] = [
     'SUPERCULTURE is a creative studio and fashion house. Located on the internet. We help influencers, online audiences, internet culture launch IDEAS',
@@ -103,18 +104,44 @@ const subheroText = [
     'Located in Los Angeles, California and Tucson, Arizona.',
 ];
 
-const footerText = {};
+const processText = [
+    {
+        header: 'Objective',
+        body: 'Determining why we are setting out on this mission and for whom we are doing it will establish a sense of purpose that will help guide us through even the blackest of holes during our journey.',
+        image: '/homepage-lovebrands.webp',
+    },
+    {
+        header: 'Destination First',
+        body: 'You wouldn’t launch a satellite into orbit without first knowing precisely where in space you want it. Same is true for your project. That is why it is always best to set out on a mission with the end in mind.',
+        image: '/homepage-tribepad.webp',
+    },
+    {
+        header: 'Journey',
+        body: 'Once we know where we’re going and why we’re going there, the next steps are to determine when we want to get there and how. The right vehicle for our mission is not one-size-fits-all, but the choice will set our trajectory.',
+        image: '/homepage-sym.webp',
+    },
+    {
+        header: "What's Your Vector",
+        body: 'With scheduled check-ins and opportunities for in-person collaborating, we can collectively keep our focus on completing our mission successfully and on time.',
+        image: '/homepage-lovebrands.webp',
+    },
+    {
+        header: 'Launch',
+        body: 'There’s enough junk in space. We like to make sure everything is tidy before sending our final deliverables into orbit. This is why we construct our timeline to allow ample time to test/debug, revise, and test.',
+        image: '/homepage-tribepad.webp',
+    },
+];
 
 export default function Home() {
     return (
         <div>
             <MainNav items={navData} />
-            <div className="bg-white z-[1] relative mb-[600px] md:mb-[400px]">
+            <div className="bg-white z-[1] relative mb-[400px] md:mb-[200px]">
                 <main>
                     <div id="portal" />
                     <Hero text={heroText} />
                     <SubHero text={subheroText} />
-                    <section className={'h-screen '}></section>
+                    <Process text={processText} />
                 </main>
             </div>
             <Footer />
