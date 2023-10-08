@@ -12,6 +12,7 @@ import { CenteredCTA } from '@/components/CenteredCTA';
 import { libre } from '@/app/fonts';
 import { SubHero } from '@/components/SubHero';
 import { Process } from '@/components/Process';
+import { HomeCTA } from '@/components/HomeCTA';
 
 const tickerItems: string[] = [
     'SUPERCULTURE is a creative studio and fashion house. Located on the internet. We help influencers, online audiences, internet culture launch IDEAS',
@@ -100,7 +101,7 @@ const heroText = 'Eat Sleep Work is an independent brand and design agency.';
 
 const subheroText = [
     'Our studios specialize in strategy, design and production across all platforms and along with brand identities, graphic design, marketing, websites, social strategy, and more.',
-    'Founded in 2005 by Jonathan Wang, Eat Sleep Work was created as a one-stop shop, a creative hub and launchpad for the ideas you’ve always wanted to realize.',
+    'Founded in 2005 by Gary Chiu, Eat Sleep Work was created as a one-stop shop, a creative hub and launchpad for the ideas you’ve always wanted to realize.',
     'Located in Los Angeles, California and Tucson, Arizona.',
 ];
 
@@ -132,6 +133,11 @@ const processText = [
     },
 ];
 
+const ctaText = {
+    header: 'Do you want to turn your ideas into tech solutions?',
+    ctaButtonText: "Let's talk",
+};
+
 export default function Home() {
     return (
         <div>
@@ -142,6 +148,7 @@ export default function Home() {
                     <Hero text={heroText} />
                     <SubHero text={subheroText} />
                     <Process text={processText} />
+                    <HomeCTA text={ctaText} />
                 </main>
             </div>
             <Footer />

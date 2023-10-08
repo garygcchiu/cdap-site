@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.1",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.279.0",
@@ -17,10 +20,12 @@
     "react": "latest",
     "react-dom": "latest",
     "react-fast-marquee": "^1.6.1",
+    "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
     "react-intersection-observer": "^9.5.2",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@designbycode/tailwindcss-text-stroke": "^1.2.1",

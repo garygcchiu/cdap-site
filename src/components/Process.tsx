@@ -1,5 +1,4 @@
 'use client';
-import NextImage from '@/components/ui/NextImage';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
