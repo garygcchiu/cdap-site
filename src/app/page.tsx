@@ -1,5 +1,5 @@
 import NextImage from 'next/image';
-import { Header } from '@/components/Header';
+import { MainNav } from '@/components/MainNav';
 import { Hero } from '@/components/Hero';
 import { ScrollDown } from '@/components/ScrollDown';
 import { Cursor } from '@/components/Cursor';
@@ -10,6 +10,7 @@ import { CardOverImage } from '@/components/CardOverImage';
 import { Footer } from '@/components/Footer';
 import { CenteredCTA } from '@/components/CenteredCTA';
 import { libre } from '@/app/fonts';
+import { SubHero } from '@/components/SubHero';
 
 const tickerItems: string[] = [
     'SUPERCULTURE is a creative studio and fashion house. Located on the internet. We help influencers, online audiences, internet culture launch IDEAS',
@@ -88,86 +89,29 @@ const centeredCTAData = {
     link: 'https://www.google.ca',
 };
 
+const navData = [
+    { title: 'Projects', href: '#projects ' },
+    { title: 'About', href: '#about ' },
+    { title: 'Contact', href: '#contact ' },
+];
+
+const heroText = 'Eat Sleep Work is an independent brand and design agency.';
+
+const subheroText = [
+    'Our studios specialize in strategy, design and production across all platforms and along with brand identities, graphic design, marketing, websites, social strategy, and more.',
+    'Founded in 2005 by Jonathan Wang, Eat Sleep Work was created as a one-stop shop, a creative hub and launchpad for the ideas you’ve always wanted to realize.',
+    'Located in Los Angeles, California and Tucson, Arizona.',
+];
+
 export default function Home() {
     return (
-        <div className={'bg-black'}>
-            <Header />
+        <div>
+            <MainNav items={navData} />
             <main>
-                <div id="portal"></div>
-                <Cursor />
-                <ScrollDown />
-                <Hero />
-                <Ticker items={tickerItems} />
-                <section className={'px-8 md:px-24 flex flex-col md:flex-row mt-32 container'}>
-                    <div className={'text-white md:flex-1 z-[2]'}>
-                        <div className={'overflow-hidden'}>
-                            <h3
-                                className={
-                                    'after:content after:border-b-[1px] after:bg-white after:inline-block after:border-white after:w-full after:h-full after:-mr-[120%] after:mb-[4px] after:ml-4'
-                                }
-                            >
-                                FROM SUBCULTURE TO
-                            </h3>
-                            <NextImage
-                                src="/logo-red.svg"
-                                alt="Logo"
-                                width={250}
-                                height={200}
-                                className={'mt-6'}
-                            />
-                        </div>
-                        <div className={'leading-8 mt-8'}>
-                            We empower the new guard of culture creators to launch their own fashion
-                            brands.
-                        </div>
-                        <div className={'leading-8 mt-4'}>
-                            We are the first talent and merch studio for new influencers from the
-                            internet (Instagram, TikTok, Youtube, Twitch) with direct monetization
-                            and growth experience from the inside of platforms like Facebook and
-                            Shopify.
-                        </div>
-                        <div className={'mt-8 mb-16 flex justify-center md:justify-start'}>
-                            <Button size={'lg'}> Learn More </Button>
-                        </div>
-                    </div>
-                    <div className={'flex md:flex-1 md:ml-8 z-[2] justify-center'}>
-                        <div className={'w-full relative max-w-[450px] pb-[118.8%]'}>
-                            <NextImage
-                                alt={'arc'}
-                                src={'/arc-photo.png'}
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                    </div>
-                </section>
-                <section className="relative px-8 md:px-24 mt-16 container z-[5]">
-                    <InfoColumns data={columnsData} />
-                </section>
-                <section className={'px-8 md:px-24 text-white flex flex-col mt-8 container z-[5]'}>
-                    <h3 className={'mb-4'}>WORK FEATURED IN PRESS</h3>
-                    <div>
-                        <p className={libre.className}>
-                            Vox • Forbes • Business of Fashion • Wall Street Journal • Cheddar • The
-                            Guardian • Glamour • NY Mag, The Strategist
-                        </p>
-                    </div>
-                </section>
-                <section className={'container px-8 md:px-24 mt-16 h-max max-h-max z-[5]'}>
-                    <CardOverImage
-                        imageSrc={'/2guys.png'}
-                        cardHeading={cardData.header}
-                        cardBody={cardData.body}
-                        cardSubheading={cardData.subheader}
-                        cardLink={cardData.link}
-                    />
-                </section>
-                <section className={'container px-8 md:px-24 mt-16 lg:mt-32'}>
-                    <CenteredCTA {...centeredCTAData} />
-                </section>
-                <section className={'container px-8 md:px-24 mt-32'}>
-                    <Footer />
-                </section>
+                <div id="portal" />
+                <Hero text={heroText} />
+                <SubHero text={subheroText} />
+                <section className={'h-screen '}></section>
             </main>
         </div>
     );
