@@ -1,13 +1,14 @@
 'use client';
 import { useState } from 'react';
 import clsx from 'clsx';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
+import NextImage from '@/components/ui/NextImage';
 
 export interface TabProps {
     title: string;
     body: string;
     listItems?: string[];
-    image: string;
+    image: StaticImageData;
 }
 
 export interface TabbedSlideshowProps {
@@ -18,7 +19,7 @@ export const TabbedSlideshow = ({ data }: TabbedSlideshowProps) => {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="col-span-1 flex flex-col space-y-8">
                 <h1 className={'font-light text-4xl mb-4 text-foreground'}>Our Services</h1>
                 {data.map((tab, index) => (
@@ -34,9 +35,9 @@ export const TabbedSlideshow = ({ data }: TabbedSlideshowProps) => {
                     </h3>
                 ))}
             </div>
-            <div className="col-span-2 flex flex-col space-y-16">
-                <div className={'flex justify-center'}>
-                    <Image src={data[selectedTab].image} alt={'image'} width={400} height={200} />
+            <div className="col-span-2 flex flex-col space-y-16 mt-8 md:mt-0">
+                <div className={'flex justify-center max-w-lg self-center'}>
+                    <NextImage src={data[selectedTab].image} alt={'image'} useSkeleton={true} />
                 </div>
                 <p className={'text-foreground'}>{data[selectedTab].body}</p>
             </div>

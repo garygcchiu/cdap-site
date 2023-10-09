@@ -6,6 +6,10 @@ import { Process } from '@/components/Process';
 import { HomeCTA } from '@/components/HomeCTA';
 import { Services } from '@/components/Services';
 
+import marketingPic from '/public/marketing.webp';
+import websitesPic from '/public/websites.webp';
+import brandingWoganPic from '/public/branding-wogan-web.png';
+
 const navData = [
     { title: 'Projects', href: '#projects ' },
     { title: 'About', href: '#about ' },
@@ -84,19 +88,19 @@ const servicesData2 = [
             'Content Planning',
             'IA Development',
         ],
-        image: '/websites.webp',
+        image: websitesPic,
     },
     {
         title: 'Branding',
         body: 'Using strategic thinking to develop your brand positioning and identity, from logo and visuals, to engaging tone of voice.',
         listItems: ['User Journey Mapping', 'Wireframing'],
-        image: '/branding-wogan-web.png',
+        image: brandingWoganPic,
     },
     {
         title: 'Development',
         body: 'Crafting responsive, search engine friendly websites with instant impact, impressing users and effectively positioning your brand.',
         listItems: ['System Architecture', 'Product Development', 'API Design & Implementation'],
-        image: '/marketing.webp',
+        image: marketingPic,
     },
 ];
 
