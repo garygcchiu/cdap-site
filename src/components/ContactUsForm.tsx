@@ -74,9 +74,7 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
                                     <FormControl>
                                         <Input placeholder="Name" {...field} />
                                     </FormControl>
-                                    <FormDescription>
-                                        Let us know how we should address you
-                                    </FormDescription>
+                                    <FormDescription>What should we call you?</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -90,9 +88,7 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
                                     <FormControl>
                                         <Input placeholder="Email" {...field} />
                                     </FormControl>
-                                    <FormDescription>
-                                        Where should we get back to you?
-                                    </FormDescription>
+                                    <FormDescription>Where should we contact you?</FormDescription>
                                     <FormMessage />
                                 </FormItem>
                             )}
@@ -105,11 +101,12 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
                             <FormItem>
                                 <FormLabel>Message</FormLabel>
                                 <FormControl>
-                                    <Textarea placeholder="Message" {...field} />
+                                    <Textarea
+                                        placeholder="Requirements, intentions, target audience, goals, budget, etc."
+                                        {...field}
+                                    />
                                 </FormControl>
-                                <FormDescription>
-                                    Any additional details we should know?
-                                </FormDescription>
+                                <FormDescription>Tell us about the project</FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}

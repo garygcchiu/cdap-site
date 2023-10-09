@@ -13,7 +13,7 @@ interface StepProps {
 }
 
 interface ProcessProps {
-    text: Omit<StepProps, 'stepNumber' | 'setCurrentStepIndex'>[];
+    data: Omit<StepProps, 'stepNumber' | 'setCurrentStepIndex'>[];
 }
 
 const Step = ({ stepNumber, header, body, image, setCurrentStepIndex }: StepProps) => {
@@ -36,7 +36,7 @@ const Step = ({ stepNumber, header, body, image, setCurrentStepIndex }: StepProp
     );
 };
 
-export const Process = ({ text }: ProcessProps) => {
+export const Process = ({ data }: ProcessProps) => {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
@@ -65,7 +65,7 @@ export const Process = ({ text }: ProcessProps) => {
                 <h1 className={'font-light text-4xl'}>Our Process</h1>
                 <div className={'grid grid-cols-1 md:grid-cols-2'}>
                     <div className={clsx(isMobile ? 'mb-12' : '')}>
-                        {text.map((t, index) => (
+                        {data.map((t, index) => (
                             <Step
                                 stepNumber={index + 1}
                                 header={t.header}
@@ -84,7 +84,7 @@ export const Process = ({ text }: ProcessProps) => {
                                 {/* Back Layer (always visible) */}
                                 <div className="absolute top-0 left-0">
                                     <Image
-                                        src={text[currentStepIndex]?.image}
+                                        src={data[currentStepIndex]?.image}
                                         alt={'image'}
                                         width={500}
                                         height={200}
@@ -98,7 +98,7 @@ export const Process = ({ text }: ProcessProps) => {
                                     style={{ opacity: fadeOpacity }}
                                 >
                                     <Image
-                                        src={text[fadingImageIndex]?.image}
+                                        src={data[fadingImageIndex]?.image}
                                         alt={'image'}
                                         width={500}
                                         height={200}
