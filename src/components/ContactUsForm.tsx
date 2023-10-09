@@ -37,6 +37,7 @@ interface ContactUsFormProps {
 
 export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
     const [submitted, setSubmitted] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
     const { toast } = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -47,15 +48,50 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        // Do something with the form values.
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
         // ✅ This will be type-safe and validated.
-        setSubmitted(true);
-        console.log(values);
-        toast({
-            title: 'Form submitted',
-            description: "We'll get back to you soon!",
-        });
+        setSubmitting(true);
+
+        const formData = new FormData();
+        for (const key in values) {
+            formData.append(key, values[key as keyof typeof values]);
+        }
+
+        try {
+            const response = await fetch(
+                `https://getform.io/f/${process.env.NEXT_PUBLIC_GETFORM_ID}`,
+                {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                }
+            );
+            setSubmitting(false);
+            if (response.status === 200 && response.ok) {
+                toast({
+                    title: 'Form submitted',
+                    description: "We'll get back to you soon!",
+                });
+                setSubmitted(true);
+            } else {
+                toast({
+                    title: 'Form submission error',
+                    description:
+                        'There was an issue in submitting your form. Please try again later.',
+                    variant: 'destructive',
+                });
+                setSubmitted(false);
+            }
+        } catch (err) {
+            toast({
+                title: 'Form submission error',
+                description: 'There was an issue in submitting your form. Please try again later.',
+                variant: 'destructive',
+            });
+            setSubmitted(false);
+        }
     };
 
     return (
@@ -111,7 +147,11 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
                             </FormItem>
                         )}
                     />
-                    <Button title={'submitButtonText'} type={'submit'} disabled={submitted}>
+                    <Button
+                        title={'submitButtonText'}
+                        type={'submit'}
+                        disabled={submitted || submitting}
+                    >
                         {submitButtonText}
                     </Button>
                 </form>
