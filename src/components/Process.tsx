@@ -40,8 +40,7 @@ export const Process = ({ text }: ProcessProps) => {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
-
-    const isMobile = window.innerWidth < 768;
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         // Start the fade-out effect
@@ -55,6 +54,10 @@ export const Process = ({ text }: ProcessProps) => {
         }, 300);
         return () => clearTimeout(timeout);
     }, [currentStepIndex]);
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
 
     return (
         <section className={'pt-[100px]'}>
