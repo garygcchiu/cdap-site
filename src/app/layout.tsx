@@ -1,6 +1,7 @@
-import './globals.css';
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 import { inter } from './fonts';
+import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body className={inter.className}>
                 {children}
                 <Toaster />
+                <Analytics />
             </body>
         </html>
     );

@@ -828,6 +828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/analytics@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@vercel/analytics@npm:1.1.0"
+  dependencies:
+    server-only: ^0.0.1
+  checksum: 24543bb6100a4f041588ee62a5732c1cec651adb493e0331b6f18316cac45ccf00c38c4260fca09372d5991cb0eb12217cfabeb9a07921bf3483b2ff8290c497
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -1315,6 +1324,7 @@ __metadata:
     "@types/node": latest
     "@types/react": latest
     "@types/react-dom": latest
+    "@vercel/analytics": ^1.1.0
     autoprefixer: latest
     class-variance-authority: ^0.7.0
     clsx: ^2.0.0
@@ -4395,6 +4405,13 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
+  languageName: node
+  linkType: hard
+
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
   languageName: node
   linkType: hard
 
