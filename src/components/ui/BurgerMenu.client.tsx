@@ -28,11 +28,11 @@ export const BurgerMenuClient = ({ showLabel, children }: BurgerMenuProps) => {
 
     const backdropClasses = clsx(
         'fixed inset-0 bg-white transition-opacity duration-300 z-20',
-        isOpen ? 'opacity-50' : 'opacity-0'
+        isOpen ? 'opacity-90' : 'opacity-0'
     );
 
     const contentClasses = clsx(
-        'fixed top-[20%] w-full h-screen bg-white bg-opacity-90 shadow-lg p-4 overflow-y-auto text-black z-50 transition-opacity duration-300',
+        'fixed top-[10%] w-full h-screen bg-white bg-opacity-90 shadow-lg p-4 overflow-y-auto text-black z-50 transition-opacity duration-300',
         isOpen ? 'opacity-100' : 'opacity-0'
     );
 
@@ -104,7 +104,7 @@ const Item: FC<BurgerMenuItemProps> = ({ children, style, isOpen }) => {
     return (
         <div
             className={clsx(
-                'text-black mb-2 text-right transition-all duration-500 ease-in-out',
+                'text-black text-2xl mb-2 text-right transition-all duration-500 ease-in-out',
                 isAnimated ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
             )}
             style={style}

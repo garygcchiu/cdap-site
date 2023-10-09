@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { clsx } from 'clsx';
 
 interface StepProps {
     stepNumber: number;
@@ -40,6 +41,8 @@ export const Process = ({ text }: ProcessProps) => {
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
 
+    const isMobile = window.innerWidth < 768;
+
     useEffect(() => {
         // Start the fade-out effect
         setFadeOpacity(0);
@@ -58,7 +61,7 @@ export const Process = ({ text }: ProcessProps) => {
             <div className={'container'}>
                 <h1 className={'font-light text-4xl'}>Our Process</h1>
                 <div className={'grid grid-cols-1 md:grid-cols-2'}>
-                    <div>
+                    <div className={clsx(isMobile ? 'mb-12' : '')}>
                         {text.map((t, index) => (
                             <Step
                                 stepNumber={index + 1}
@@ -70,33 +73,37 @@ export const Process = ({ text }: ProcessProps) => {
                             />
                         ))}
                     </div>
-                    <div className={'relative mb-[calc(10vh+200px)] md:mb-[calc(35vh+200px)]'}>
-                        {/* Adjusted the margin-bottom */}
-                        <div className="sticky top-1/4 mt-4 md:mt-32">
-                            {/* Adjusted the top class */}
-                            {/* Back Layer (always visible) */}
-                            <div className="absolute top-0 left-0">
-                                <Image
-                                    src={text[currentStepIndex]?.image}
-                                    alt={'image'}
-                                    width={500}
-                                    height={200}
-                                />
-                            </div>
-                            {/* Front Layer (fades out) */}
-                            <div
-                                className={'absolute top-0 left-0 transition-opacity duration-300'}
-                                style={{ opacity: fadeOpacity }}
-                            >
-                                <Image
-                                    src={text[fadingImageIndex]?.image}
-                                    alt={'image'}
-                                    width={500}
-                                    height={200}
-                                />
+                    {!isMobile && (
+                        <div className={'relative mb-[calc(10vh+200px)] md:mb-[calc(35vh+200px)]'}>
+                            {/* Adjusted the margin-bottom */}
+                            <div className="sticky top-1/4 mt-4 md:mt-32">
+                                {/* Adjusted the top class */}
+                                {/* Back Layer (always visible) */}
+                                <div className="absolute top-0 left-0">
+                                    <Image
+                                        src={text[currentStepIndex]?.image}
+                                        alt={'image'}
+                                        width={500}
+                                        height={200}
+                                    />
+                                </div>
+                                {/* Front Layer (fades out) */}
+                                <div
+                                    className={
+                                        'absolute top-0 left-0 transition-opacity duration-300'
+                                    }
+                                    style={{ opacity: fadeOpacity }}
+                                >
+                                    <Image
+                                        src={text[fadingImageIndex]?.image}
+                                        alt={'image'}
+                                        width={500}
+                                        height={200}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>

@@ -134,7 +134,7 @@ const processText = [
 ];
 
 const ctaText = {
-    header: 'Do you want to turn your ideas into tech solutions?',
+    header: 'Ready to turn your ideas into tech solutions?',
     ctaButtonText: "Let's talk",
 };
 
