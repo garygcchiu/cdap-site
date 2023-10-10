@@ -28,10 +28,10 @@ const Step = ({ stepNumber, header, body, image, setCurrentStepIndex }: StepProp
     }, [inView, stepNumber, setCurrentStepIndex]);
 
     return (
-        <div ref={ref} className={'pt-[50px] pb-[25px] md:pt-[10vh] md:pb-[25vh]'}>
+        <div ref={ref} className={'pt-[50px] pb-[25px] md:pt-[10vh] md:pb-[25vh] md:pr-8'}>
             <h5>0{stepNumber}</h5>
             <h3 className={'font-semibold text-3xl mb-4 mt-1'}>{header}</h3>
-            <p className={'max-w-sm'}>{body}</p>
+            <p className={'max-w-md font-[350]'}>{body}</p>
         </div>
     );
 };

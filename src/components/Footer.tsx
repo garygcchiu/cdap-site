@@ -4,7 +4,7 @@ export const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <div className={'text-white bg-black fixed bottom-0 left-0 right-0 z-0 pt-20'}>
+        <div className={'text-white bg-black fixed bottom-0 left-0 right-0 z-[-1] pt-20'}>
             <div className={'container grid grid-cols-1 md:grid-cols-3 gap-12 min-h-32 flex-grow'}>
                 <div className={'text-left'}>
                     <h4 className={'font-semibold text-xl'}>Contact Us</h4>
