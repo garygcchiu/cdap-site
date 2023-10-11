@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@designbycode/tailwindcss-text-stroke": "^1.2.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",

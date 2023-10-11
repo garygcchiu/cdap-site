@@ -4,5 +4,20 @@
   "singleQuote": true,
   "arrowParens": "always",
   "printWidth": 100,
-  "tabWidth": 4
+  "tabWidth": 4,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "interface",
+    "(?=content|api)",
+    "context/",
+    "mock/",
+    "config",
+    "utils/",
+    "hooks/",
+    "(components/|./index)",
+    ".svg",
+    "^../(.*)$",
+    "(?=./styles.module.scss)"
+  ]
 }
