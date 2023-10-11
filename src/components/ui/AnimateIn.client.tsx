@@ -1,7 +1,8 @@
 'use client';
+
 import { FC, ReactNode } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { clsx } from 'clsx';
+import { useInView } from 'react-intersection-observer';
 import { ANIMATION_MAPPING, AnimationType } from '@/lib/types';
 
 interface AnimateInProps {

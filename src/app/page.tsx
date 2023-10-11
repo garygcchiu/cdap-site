@@ -1,15 +1,14 @@
-import { MainNav } from '@/components/MainNav';
-import { Hero } from '@/components/Hero';
 import { Footer } from '@/components/Footer';
-import { SubHero } from '@/components/SubHero';
-import { Process } from '@/components/Process';
+import { Hero } from '@/components/Hero';
 import { HomeCTA } from '@/components/HomeCTA';
+import { MainNav } from '@/components/MainNav';
+import { Process } from '@/components/Process';
 import { Services } from '@/components/Services';
-
+import { SubHero } from '@/components/SubHero';
+import { Team } from '@/components/Team';
+import brandingWoganPic from '/public/branding-wogan-web.png';
 import marketingPic from '/public/marketing.webp';
 import websitesPic from '/public/websites.webp';
-import brandingWoganPic from '/public/branding-wogan-web.png';
-import { Team } from '@/components/Team';
 
 const navData = [
     { title: 'Projects', href: '#projects ' },

@@ -1,9 +1,10 @@
 'use client';
-import Link from 'next/link';
-import { BurgerMenuClient } from '@/components/ui/BurgerMenu.client';
-import { useInView } from 'react-intersection-observer';
-import { clsx } from 'clsx';
+
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { clsx } from 'clsx';
+import { useInView } from 'react-intersection-observer';
+import { BurgerMenuClient } from '@/components/ui/BurgerMenu.client';
 import { InViewAnchor } from '@/components/ui/InViewAnchor';
 
 interface MainNavProps {

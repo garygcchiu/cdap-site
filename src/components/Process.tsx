@@ -1,8 +1,9 @@
 'use client';
-import Image from 'next/image';
+
 import { useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { clsx } from 'clsx';
+import { useInView } from 'react-intersection-observer';
 
 interface StepProps {
     stepNumber: number;

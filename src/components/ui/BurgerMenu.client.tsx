@@ -1,8 +1,8 @@
 'use client';
 
 import React, { FC, useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { clsx } from 'clsx';
+import ReactDOM from 'react-dom';
 
 interface BurgerMenuProps {
     showLabel?: boolean;

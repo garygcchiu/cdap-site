@@ -1,7 +1,8 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
-import useMousePosition from '@/hooks/useMousePosition';
 import { clsx } from 'clsx';
+import useMousePosition from '@/hooks/useMousePosition';
 
 export const Cursor = () => {
     const { x, y } = useMousePosition();

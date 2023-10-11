@@ -1,7 +1,8 @@
 'use client';
+
 import { useEffect, useState } from 'react';
-import clsx from 'clsx';
 import { StaticImageData } from 'next/image';
+import clsx from 'clsx';
 import NextImage from '@/components/ui/NextImage';
 
 export interface TabProps {

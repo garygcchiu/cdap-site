@@ -1,5 +1,5 @@
-import { AnimationType } from '@/lib/types';
 import { AnimateIn } from '@/components/ui/AnimateIn.client';
+import { AnimationType } from '@/lib/types';
 
 interface SubHeroProps {
     data: string[];
