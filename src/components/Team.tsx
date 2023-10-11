@@ -13,7 +13,7 @@ interface TeamProfileProps {
 
 const TeamProfile = ({ name, title, picture, biography }: TeamProfileProps) => {
     return (
-        <div className={'w-full mb-8'}>
+        <div className={'md:w-10/12 mb-8'}>
             <NextImage
                 alt={name}
                 src={picture}
@@ -22,10 +22,9 @@ const TeamProfile = ({ name, title, picture, biography }: TeamProfileProps) => {
                 useSkeleton
                 sizes="100vw"
                 style={{ width: '100%', height: 'auto' }}
-                className={'md:w-11/12'}
             />
             <h3 className={'text-4xl font-light mt-4 mb-2'}>{name}</h3>
-            <h5 className={'text-muted-foreground font-normal mb-2'}>{title}</h5>
+            <h5 className={'text-muted-foreground font-normal mb-4'}>{title}</h5>
             <div>
                 {biography.split('\n').map((i, key) => {
                     return (
@@ -43,7 +42,7 @@ export const Team = ({ data }: TeamProps) => {
     return (
         <section className={'pt-[100px] container mb-12 md:mb-16'}>
             <h1 className={'font-light text-4xl text-foreground mb-12'}>Our Team</h1>
-            <div className={`grid grid-cols-1 md:grid-cols-${data.length} md:space-x-8`}>
+            <div className={`grid grid-cols-1 md:grid-cols-${data.length}`}>
                 {data.map((d, index) => (
                     <TeamProfile
                         name={d.name}
