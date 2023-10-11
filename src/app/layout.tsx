@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/react';
+import { ReCaptchaProvider } from 'next-recaptcha-v3';
 import { inter } from './fonts';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -14,7 +15,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body className={inter.className}>
-                {children}
+                <ReCaptchaProvider
+                    reCaptchaKey={
+                        process.env.NODE_ENV === 'production'
+                            ? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+                            : process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_LOCALHOST
+                    }
+                >
+                    {children}
+                </ReCaptchaProvider>
                 <Toaster />
                 <Analytics />
             </body>

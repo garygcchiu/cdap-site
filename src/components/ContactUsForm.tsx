@@ -1,7 +1,8 @@
 'use client';
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useReCaptcha } from 'next-recaptcha-v3';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import {
@@ -48,34 +49,55 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
         },
     });
 
-    const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        // ✅ This will be type-safe and validated.
-        setSubmitting(true);
+    const { executeRecaptcha } = useReCaptcha();
 
-        const formData = new FormData();
-        for (const key in values) {
-            formData.append(key, values[key as keyof typeof values]);
-        }
+    const onSubmit = useCallback(
+        async (values: z.infer<typeof formSchema>) => {
+            // ✅ This will be type-safe and validated.
+            setSubmitting(true);
 
-        try {
-            const response = await fetch(
-                `https://getform.io/f/${process.env.NEXT_PUBLIC_GETFORM_ID}`,
-                {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        Accept: 'application/json',
-                    },
+            const formData = new FormData();
+            for (const key in values) {
+                formData.append(key, values[key as keyof typeof values]);
+            }
+
+            let token = '';
+            try {
+                token = await executeRecaptcha('form_submit');
+            } catch (err) {
+                console.error('Recaptcha error: ', err);
+                return;
+            }
+            console.log('token = ', token);
+
+            try {
+                const response = await fetch(
+                    `https://getform.io/f/${process.env.NEXT_PUBLIC_GETFORM_ID}`,
+                    {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            Accept: 'application/json',
+                        },
+                    }
+                );
+                setSubmitting(false);
+                if (response.status === 200 && response.ok) {
+                    toast({
+                        title: 'Form submitted',
+                        description: "We'll get back to you soon!",
+                    });
+                    setSubmitted(true);
+                } else {
+                    toast({
+                        title: 'Form submission error',
+                        description:
+                            'There was an issue in submitting your form. Please try again later.',
+                        variant: 'destructive',
+                    });
+                    setSubmitted(false);
                 }
-            );
-            setSubmitting(false);
-            if (response.status === 200 && response.ok) {
-                toast({
-                    title: 'Form submitted',
-                    description: "We'll get back to you soon!",
-                });
-                setSubmitted(true);
-            } else {
+            } catch (err) {
                 toast({
                     title: 'Form submission error',
                     description:
@@ -84,15 +106,9 @@ export const ContactUsForm = ({ submitButtonText }: ContactUsFormProps) => {
                 });
                 setSubmitted(false);
             }
-        } catch (err) {
-            toast({
-                title: 'Form submission error',
-                description: 'There was an issue in submitting your form. Please try again later.',
-                variant: 'destructive',
-            });
-            setSubmitted(false);
-        }
-    };
+        },
+        [toast, executeRecaptcha]
+    );
 
     return (
         <div className={'w-full'}>
