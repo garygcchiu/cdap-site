@@ -29,7 +29,7 @@ const TeamProfile = ({ name, title, picture, biography }: TeamProfileProps) => {
             <div>
                 {biography.split('\n').map((i, key) => {
                     return (
-                        <p className={'mb-2 font-[350]'} key={key}>
+                        <p className={'mb-2 font-[350] text-sm'} key={key}>
                             {i}
                         </p>
                     );
