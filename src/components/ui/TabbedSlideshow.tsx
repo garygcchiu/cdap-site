@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { StaticImageData } from 'next/image';
 import clsx from 'clsx';
 import NextImage from '@/components/ui/NextImage';
@@ -20,6 +20,7 @@ export const TabbedSlideshow = ({ data }: TabbedSlideshowProps) => {
     const [selectedTab, setSelectedTab] = useState(0);
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         // Start the fade-out effect
@@ -34,8 +35,48 @@ export const TabbedSlideshow = ({ data }: TabbedSlideshowProps) => {
         return () => clearTimeout(timeout);
     }, [selectedTab]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!containerRef.current) return;
+
+            const containerStart = containerRef.current.offsetTop;
+            const containerHeight = containerRef.current.clientHeight;
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Calculate the actual scrollable range within the container
+            const containerScrollRange = containerHeight - windowHeight;
+
+            // Determine the scroll range per tab
+            const tabScrollRange = containerScrollRange / data.length;
+
+            // Calculate the current scroll position within the container
+            const currentScrollPosition = scrollPosition + windowHeight / 2 - containerStart;
+
+            // Determine the active tab based on the current scroll position
+            let newTabIndex = Math.floor(currentScrollPosition / tabScrollRange);
+
+            // Clamp newTabIndex between 0 and data.length - 1
+            newTabIndex = Math.max(0, Math.min(newTabIndex, data.length - 1));
+
+            // Update the active tab if it's different from the current one and data[newTabIndex] is defined
+            if (newTabIndex !== selectedTab && data[newTabIndex]) {
+                setSelectedTab(newTabIndex);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [selectedTab, data.length]);
+
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div
+            ref={containerRef}
+            style={{ position: 'sticky', top: 0 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-4"
+        >
             <div className="col-span-1 flex flex-col space-y-8">
                 <h1 className={'font-light text-4xl mb-4 text-foreground'}>Our Services</h1>
                 {data.map((tab, index) => (
