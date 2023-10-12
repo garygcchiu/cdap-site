@@ -98,7 +98,10 @@ const teamData = [
 ];
 
 export default async function Home() {
-    const getProcessSteps = client.fetch<ProcessStep[]>(`*[_type == "processStep"]`);
+    const revalidate = 60; //Time interval
+    const getProcessSteps = client.fetch<ProcessStep[]>(`*[_type == "processStep"]`, {
+        next: { revalidate },
+    });
     const [processSteps] = await Promise.all([getProcessSteps]);
 
     return (
