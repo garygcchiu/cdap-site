@@ -4,27 +4,25 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 import { useInView } from 'react-intersection-observer';
+import { ProcessStep } from '@/lib/types';
+import { urlFor } from '@/lib/utils';
 
-interface StepProps {
-    stepNumber: number;
-    header: string;
-    body: string;
-    image: string;
+type StepProps = Omit<ProcessStep, '_id'> & {
     setCurrentStepIndex: (index: number) => void;
-}
+};
 
 interface ProcessProps {
-    data: Omit<StepProps, 'stepNumber' | 'setCurrentStepIndex'>[];
+    data: ProcessStep[];
 }
 
-const Step = ({ stepNumber, header, body, image, setCurrentStepIndex }: StepProps) => {
+const Step = ({ stepNumber: stepNumber, header, body, image, setCurrentStepIndex }: StepProps) => {
     const [ref, inView] = useInView({
         threshold: 1,
     });
 
     useEffect(() => {
         if (inView) {
-            setCurrentStepIndex(stepNumber - 1);
+            setCurrentStepIndex(stepNumber ? stepNumber - 1 : 0);
         }
     }, [inView, stepNumber, setCurrentStepIndex]);
 
@@ -85,7 +83,7 @@ export const Process = ({ data }: ProcessProps) => {
                                 {/* Back Layer (always visible) */}
                                 <div className="absolute top-0 left-0">
                                     <Image
-                                        src={data[currentStepIndex]?.image}
+                                        src={urlFor(data[currentStepIndex]?.image).url()}
                                         alt={'image'}
                                         width={500}
                                         height={200}
@@ -99,7 +97,7 @@ export const Process = ({ data }: ProcessProps) => {
                                     style={{ opacity: fadeOpacity }}
                                 >
                                     <Image
-                                        src={data[fadingImageIndex]?.image}
+                                        src={urlFor(data[fadingImageIndex]?.image).url()}
                                         alt={'image'}
                                         width={500}
                                         height={200}

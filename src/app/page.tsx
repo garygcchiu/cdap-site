@@ -6,6 +6,8 @@ import { Process } from '@/components/Process';
 import { Services } from '@/components/Services';
 import { SubHero } from '@/components/SubHero';
 import { Team } from '@/components/Team';
+import { client } from '@/lib/sanity/client';
+import { ProcessStep } from '@/lib/types';
 import brandingWoganPic from '/public/branding-wogan-web.png';
 import marketingPic from '/public/marketing.webp';
 import websitesPic from '/public/websites.webp';
@@ -22,34 +24,6 @@ const subheroData = [
     'Our studios specialize in strategy, design and production across all platforms and along with brand identities, graphic design, marketing, websites, social strategy, and more.',
     'Founded in 2005 by Gary Chiu, Eat Sleep Work was created as a one-stop shop, a creative hub and launchpad for the ideas you’ve always wanted to realize.',
     'Located in Los Angeles, California and Tucson, Arizona.',
-];
-
-const processData = [
-    {
-        header: 'Objective',
-        body: 'Determining why we are setting out on this mission and for whom we are doing it will establish a sense of purpose that will help guide us through even the blackest of holes during our journey.',
-        image: '/homepage-lovebrands.webp',
-    },
-    {
-        header: 'Destination First',
-        body: 'You wouldn’t launch a satellite into orbit without first knowing precisely where in space you want it. Same is true for your project. That is why it is always best to set out on a mission with the end in mind.',
-        image: '/homepage-tribepad.webp',
-    },
-    {
-        header: 'Journey',
-        body: 'Once we know where we’re going and why we’re going there, the next steps are to determine when we want to get there and how. The right vehicle for our mission is not one-size-fits-all, but the choice will set our trajectory.',
-        image: '/homepage-sym.webp',
-    },
-    {
-        header: "What's Your Vector",
-        body: 'With scheduled check-ins and opportunities for in-person collaborating, we can collectively keep our focus on completing our mission successfully and on time.',
-        image: '/homepage-lovebrands.webp',
-    },
-    {
-        header: 'Launch',
-        body: 'There’s enough junk in space. We like to make sure everything is tidy before sending our final deliverables into orbit. This is why we construct our timeline to allow ample time to test/debug, revise, and test.',
-        image: '/homepage-tribepad.webp',
-    },
 ];
 
 const ctaData = {
@@ -123,7 +97,10 @@ const teamData = [
     },
 ];
 
-export default function Home() {
+export default async function Home() {
+    const getProcessSteps = client.fetch<ProcessStep[]>(`*[_type == "processStep"]`);
+    const [processSteps] = await Promise.all([getProcessSteps]);
+
     return (
         <div>
             <MainNav items={navData} />
@@ -132,7 +109,7 @@ export default function Home() {
                     <div id="portal" />
                     <Hero data={heroData} />
                     <SubHero data={subheroData} />
-                    <Process data={processData} />
+                    <Process data={processSteps} />
                     <Services data={servicesData2} />
                     <Team data={teamData} />
                     <HomeCTA text={ctaData} />

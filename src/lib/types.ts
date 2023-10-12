@@ -1,3 +1,5 @@
+import { Image } from '@sanity/types';
+
 export enum AnimationType {
     FADE_IN_TRANSLATE_UP,
     FADE_IN_TRANSLATE_DOWN,
@@ -17,4 +19,12 @@ export const ANIMATION_MAPPING: Record<AnimationType, AnimateInAnimation> = {
         initialClass: '-translate-y-[4] opacity-0',
         finalClass: 'translate-y-0 opacity-100',
     },
+};
+
+export type ProcessStep = {
+    _id: string;
+    header: string;
+    body: string;
+    stepNumber: number;
+    image: Image;
 };
