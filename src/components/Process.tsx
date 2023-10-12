@@ -82,12 +82,14 @@ export const Process = ({ data }: ProcessProps) => {
                                 {/* Adjusted the top class */}
                                 {/* Back Layer (always visible) */}
                                 <div className="absolute top-0 left-0">
-                                    <Image
-                                        src={urlFor(data[currentStepIndex]?.image).url()}
-                                        alt={'image'}
-                                        width={500}
-                                        height={200}
-                                    />
+                                    {data.length && (
+                                        <Image
+                                            src={urlFor(data[currentStepIndex]?.image).url()}
+                                            alt={'image'}
+                                            width={500}
+                                            height={200}
+                                        />
+                                    )}
                                 </div>
                                 {/* Front Layer (fades out) */}
                                 <div
@@ -96,12 +98,14 @@ export const Process = ({ data }: ProcessProps) => {
                                     }
                                     style={{ opacity: fadeOpacity }}
                                 >
-                                    <Image
-                                        src={urlFor(data[fadingImageIndex]?.image).url()}
-                                        alt={'image'}
-                                        width={500}
-                                        height={200}
-                                    />
+                                    {data.length && (
+                                        <Image
+                                            src={urlFor(data[fadingImageIndex]?.image).url()}
+                                            alt={'image'}
+                                            width={500}
+                                            height={200}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>
