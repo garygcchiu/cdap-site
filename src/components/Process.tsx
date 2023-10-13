@@ -36,6 +36,7 @@ const Step = ({ stepNumber: stepNumber, header, body, image, setCurrentStepIndex
 };
 
 export const Process = ({ data }: ProcessProps) => {
+    console.log('process data = ', data);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
@@ -68,7 +69,7 @@ export const Process = ({ data }: ProcessProps) => {
                             .sort((a, b) => a.stepNumber - b.stepNumber)
                             .map((t, index) => (
                                 <Step
-                                    stepNumber={index + 1}
+                                    stepNumber={t.stepNumber}
                                     header={t.header}
                                     body={t.body}
                                     key={index}
