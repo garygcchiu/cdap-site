@@ -64,16 +64,18 @@ export const Process = ({ data }: ProcessProps) => {
                 <h1 className={'font-light text-4xl'}>Our Process</h1>
                 <div className={'grid grid-cols-1 md:grid-cols-2'}>
                     <div className={clsx(isMobile ? 'mb-12' : '')}>
-                        {data.map((t, index) => (
-                            <Step
-                                stepNumber={index + 1}
-                                header={t.header}
-                                body={t.body}
-                                key={index}
-                                image={t.image}
-                                setCurrentStepIndex={() => setCurrentStepIndex(index)}
-                            />
-                        ))}
+                        {data
+                            .sort((a, b) => a.stepNumber - b.stepNumber)
+                            .map((t, index) => (
+                                <Step
+                                    stepNumber={index + 1}
+                                    header={t.header}
+                                    body={t.body}
+                                    key={index}
+                                    image={t.image}
+                                    setCurrentStepIndex={() => setCurrentStepIndex(index)}
+                                />
+                            ))}
                     </div>
                     {!isMobile && (
                         <div className={'relative mb-[calc(10vh+200px)] md:mb-[calc(35vh+200px)]'}>
