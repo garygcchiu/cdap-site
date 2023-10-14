@@ -7,7 +7,7 @@ import { Services } from '@/components/Services';
 import { SubHero } from '@/components/SubHero';
 import { Team } from '@/components/Team';
 import { client } from '@/lib/sanity/client';
-import { HeroData, ProcessStepData } from '@/lib/types';
+import { HeroData, ProcessStepData, TeamMember } from '@/lib/types';
 import brandingWoganPic from '/public/branding-wogan-web.png';
 import marketingPic from '/public/marketing.webp';
 import websitesPic from '/public/websites.webp';
@@ -70,25 +70,6 @@ const servicesData2 = [
     },
 ];
 
-const teamData = [
-    {
-        name: 'Gary Chiu',
-        title: 'Co-Founder',
-        picture: '/ESW-Jonathan-1.jpg',
-        biography:
-            'Jonathan Wang is the founder of the digital design studio, Eat. Sleep.Work, Inc., established in November of 2004 where he also acts as the managing Creative Director. He was born and raised in Los Angeles, CA with an early passion for the arts and illustration. Immersed in formal Illustration training at the age of six and continued his practice throughout his career.\n' +
-            'Jonathan graduated from California State University Long Beach in 2000 with a B.S. Business Management and an emphasis in Information Systems, while simultaneously enrolled in the Graphic Design program at Art Center in 1998. He has been working in Advertising and Marketing professionally since 1999, with some of the biggest multinational clients in the world such as Nestlé, UBS, Henkel, Disney, Warner Bros. and Mattel. He has partnered with well-known agencies such as BBDO (the world’s most awarded agency), Trigger LA, Midnight Oil Creative, Brand Thirty-Three, and Rocket XL.',
-    },
-    {
-        name: 'Shyam Ponnampalam',
-        title: 'Co-Founder',
-        picture: '/ESW-Chimmy-1.jpg',
-        biography:
-            'Cerritos, CA born Chimmy obtained a BS in Business Administration from CSULB in 2001 and has since been steadily in the world of graphic design. By taking calculated risks at the right time in life, he would fulfill his dreams of opening up shop with Wang in 2005. Their complementary personality types have made them a perfect business team, undoubtedly contributing to the successes they have achieved with Eat Sleep Work.\n' +
-            'Along with an advanced understanding of a variety of programming languages and a knack for problem solving, he brings with him a true passion for the design process. In particular, he is driven and inspired by clients with whom he works through their enthusiasm for the product they make or the service they provide. With a sharp tongue and quick wit, he always tells it like it is, with a brutal yet refreshing sense of honesty.',
-    },
-];
-
 export default async function Home() {
     const revalidate = 60; // seconds
     const getHero = client.fetch<HeroData>(`*[_type == "hero"][0]`, {
@@ -97,7 +78,14 @@ export default async function Home() {
     const getProcessSteps = client.fetch<ProcessStepData[]>(`*[_type == "processStep"]`, {
         next: { revalidate },
     });
-    const [heroData, processStepsData] = await Promise.all([getHero, getProcessSteps]);
+    const getTeamMembers = client.fetch<TeamMember[]>(`*[_type == "teamMember"]`, {
+        next: { revalidate },
+    });
+    const [heroData, processStepsData, teamData] = await Promise.all([
+        getHero,
+        getProcessSteps,
+        getTeamMembers,
+    ]);
 
     return (
         <div>

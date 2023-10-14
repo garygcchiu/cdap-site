@@ -34,3 +34,11 @@ export type HeroData = {
     header: string;
     subHeader: string;
 };
+
+export type TeamMember = {
+    _id: string;
+    name: string;
+    title: string;
+    biography: string;
+    image: Image;
+};

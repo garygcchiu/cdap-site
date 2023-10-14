@@ -1,22 +1,17 @@
 import NextImage from '@/components/ui/NextImage';
+import { TeamMember } from '@/lib/types';
+import { urlFor } from '@/lib/utils';
 
 interface TeamProps {
-    data: TeamProfileProps[];
+    data: TeamMember[];
 }
 
-interface TeamProfileProps {
-    name: string;
-    title: string;
-    picture: string;
-    biography: string;
-}
-
-const TeamProfile = ({ name, title, picture, biography }: TeamProfileProps) => {
+const TeamProfile = ({ name, title, image, biography }: Omit<TeamMember, '_id'>) => {
     return (
         <div className={'md:w-10/12 mb-8'}>
             <NextImage
                 alt={name}
-                src={picture}
+                src={urlFor(image).url()}
                 width={0}
                 height={0}
                 useSkeleton
@@ -47,7 +42,7 @@ export const Team = ({ data }: TeamProps) => {
                     <TeamProfile
                         name={d.name}
                         title={d.title}
-                        picture={d.picture}
+                        image={d.image}
                         biography={d.biography}
                         key={index}
                     />
