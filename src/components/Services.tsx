@@ -2,7 +2,7 @@ import { TabbedSlideshow, TabbedSlideshowProps } from '@/components/ui/TabbedSli
 
 export const Services = ({ data }: TabbedSlideshowProps) => {
     return (
-        <section className={'py-[100px] dark bg-black'}>
+        <section className={'py-[100px] dark bg-black'} id={'services'}>
             <div className={'container'}>
                 <TabbedSlideshow data={data} />
             </div>

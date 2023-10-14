@@ -42,3 +42,10 @@ export type TeamMember = {
     biography: string;
     image: Image;
 };
+
+export type Service = {
+    _id: string;
+    title: string;
+    description: string;
+    image: Image;
+};

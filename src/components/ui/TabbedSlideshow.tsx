@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { StaticImageData } from 'next/image';
+import { Image } from '@sanity/types';
 import clsx from 'clsx';
 import NextImage from '@/components/ui/NextImage';
+import { urlFor } from '@/lib/utils';
 
 export interface TabProps {
     title: string;
-    body: string;
+    description: string;
     listItems?: string[];
-    image: StaticImageData;
+    image: Image;
 }
 
 export interface TabbedSlideshowProps {
@@ -54,20 +56,28 @@ export const TabbedSlideshow = ({ data }: TabbedSlideshowProps) => {
             <div className="col-span-2 flex flex-col space-y-16 mt-8 md:mt-0">
                 <div className={'flex justify-center max-w-lg self-center relative'}>
                     {/* Back Layer (always visible) */}
-                    <NextImage src={data[selectedTab].image} alt={'image'} useSkeleton={true} />
+                    <NextImage
+                        src={urlFor(data[selectedTab].image).url()}
+                        width={500}
+                        height={200}
+                        alt={'image'}
+                        useSkeleton={true}
+                    />
                     {/* Front Layer (fades out) */}
                     <div
                         className={'absolute top-0 left-0 transition-opacity duration-300'}
                         style={{ opacity: fadeOpacity }}
                     >
                         <NextImage
-                            src={data[fadingImageIndex].image}
+                            src={urlFor(data[fadingImageIndex].image).url()}
                             alt={'image'}
+                            width={500}
+                            height={200}
                             useSkeleton={true}
                         />
                     </div>
                 </div>
-                <p className={'text-foreground'}>{data[selectedTab].body}</p>
+                <p className={'text-foreground'}>{data[selectedTab].description}</p>
             </div>
         </div>
     );

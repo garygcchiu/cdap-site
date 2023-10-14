@@ -7,15 +7,15 @@ import { Services } from '@/components/Services';
 import { SubHero } from '@/components/SubHero';
 import { Team } from '@/components/Team';
 import { client } from '@/lib/sanity/client';
-import { HeroData, ProcessStepData, TeamMember } from '@/lib/types';
+import { HeroData, ProcessStepData, Service, TeamMember } from '@/lib/types';
 import brandingWoganPic from '/public/branding-wogan-web.png';
 import marketingPic from '/public/marketing.webp';
 import websitesPic from '/public/websites.webp';
 
 const navData = [
-    { title: 'Projects', href: '#projects ' },
-    { title: 'About', href: '#about ' },
-    { title: 'Contact', href: '#contact ' },
+    { title: 'Process', href: '#process' },
+    { title: 'Team', href: '#team' },
+    { title: 'Contact', href: '#contact' },
 ];
 
 const ctaData = {
@@ -81,10 +81,14 @@ export default async function Home() {
     const getTeamMembers = client.fetch<TeamMember[]>(`*[_type == "teamMember"]`, {
         next: { revalidate },
     });
-    const [heroData, processStepsData, teamData] = await Promise.all([
+    const getServices = client.fetch<Service[]>(`*[_type == "service"]`, {
+        next: { revalidate },
+    });
+    const [heroData, processStepsData, teamData, serviceData] = await Promise.all([
         getHero,
         getProcessSteps,
         getTeamMembers,
+        getServices,
     ]);
 
     return (
@@ -96,7 +100,7 @@ export default async function Home() {
                     <Hero data={heroData.header} />
                     <SubHero data={heroData.subHeader} />
                     <Process data={processStepsData} />
-                    <Services data={servicesData2} />
+                    <Services data={serviceData} />
                     <Team data={teamData} />
                     <HomeCTA text={ctaData} />
                 </main>

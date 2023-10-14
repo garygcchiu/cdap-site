@@ -59,7 +59,7 @@ export const Process = ({ data }: ProcessProps) => {
     }, []);
 
     return (
-        <section className={'pt-[100px]'}>
+        <section className={'pt-[100px]'} id={'process'}>
             <div className={'container'}>
                 <h1 className={'font-light text-4xl'}>Our Process</h1>
                 <div className={'grid grid-cols-1 md:grid-cols-2'}>

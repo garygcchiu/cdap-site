@@ -35,7 +35,7 @@ const TeamProfile = ({ name, title, image, biography }: Omit<TeamMember, '_id'>)
 
 export const Team = ({ data }: TeamProps) => {
     return (
-        <section className={'pt-[100px] container mb-12 md:mb-16'}>
+        <section className={'pt-[100px] container mb-12 md:mb-16'} id={'team'}>
             <h1 className={'font-light text-4xl text-foreground mb-12'}>Our Team</h1>
             <div className={`grid grid-cols-1 md:grid-cols-${data.length}`}>
                 {data.map((d, index) => (
