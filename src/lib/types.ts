@@ -21,10 +21,16 @@ export const ANIMATION_MAPPING: Record<AnimationType, AnimateInAnimation> = {
     },
 };
 
-export type ProcessStep = {
+export type ProcessStepData = {
     _id: string;
     header: string;
     body: string;
     stepNumber: number;
     image: Image;
+};
+
+export type HeroData = {
+    _id: string;
+    header: string;
+    subHeader: string;
 };

@@ -7,7 +7,7 @@ import { Services } from '@/components/Services';
 import { SubHero } from '@/components/SubHero';
 import { Team } from '@/components/Team';
 import { client } from '@/lib/sanity/client';
-import { ProcessStep } from '@/lib/types';
+import { HeroData, ProcessStepData } from '@/lib/types';
 import brandingWoganPic from '/public/branding-wogan-web.png';
 import marketingPic from '/public/marketing.webp';
 import websitesPic from '/public/websites.webp';
@@ -16,14 +16,6 @@ const navData = [
     { title: 'Projects', href: '#projects ' },
     { title: 'About', href: '#about ' },
     { title: 'Contact', href: '#contact ' },
-];
-
-const heroData = 'Eat Sleep Work is an independent brand and design agency.';
-
-const subheroData = [
-    'Our studios specialize in strategy, design and production across all platforms and along with brand identities, graphic design, marketing, websites, social strategy, and more.',
-    'Founded in 2005 by Gary Chiu, Eat Sleep Work was created as a one-stop shop, a creative hub and launchpad for the ideas you’ve always wanted to realize.',
-    'Located in Los Angeles, California and Tucson, Arizona.',
 ];
 
 const ctaData = {
@@ -98,11 +90,14 @@ const teamData = [
 ];
 
 export default async function Home() {
-    const revalidate = 60; //Time interval
-    const getProcessSteps = client.fetch<ProcessStep[]>(`*[_type == "processStep"]`, {
+    const revalidate = 60; // seconds
+    const getHero = client.fetch<HeroData>(`*[_type == "hero"][0]`, {
         next: { revalidate },
     });
-    const [processSteps] = await Promise.all([getProcessSteps]);
+    const getProcessSteps = client.fetch<ProcessStepData[]>(`*[_type == "processStep"]`, {
+        next: { revalidate },
+    });
+    const [heroData, processStepsData] = await Promise.all([getHero, getProcessSteps]);
 
     return (
         <div>
@@ -110,9 +105,9 @@ export default async function Home() {
             <div className="bg-white z-[1] relative mb-[400px] md:mb-[200px]">
                 <main>
                     <div id="portal" />
-                    <Hero data={heroData} />
-                    <SubHero data={subheroData} />
-                    <Process data={processSteps} />
+                    <Hero data={heroData.header} />
+                    <SubHero data={heroData.subHeader} />
+                    <Process data={processStepsData} />
                     <Services data={servicesData2} />
                     <Team data={teamData} />
                     <HomeCTA text={ctaData} />

@@ -2,7 +2,7 @@ import { AnimateIn } from '@/components/ui/AnimateIn.client';
 import { AnimationType } from '@/lib/types';
 
 interface SubHeroProps {
-    data: string[];
+    data: string;
 }
 
 export const SubHero = ({ data }: SubHeroProps) => {
@@ -10,7 +10,7 @@ export const SubHero = ({ data }: SubHeroProps) => {
         <section className={'py-[100px] container'}>
             <div className={'max-w-2xl flex flex-col'}>
                 <AnimateIn animationType={AnimationType.FADE_IN_TRANSLATE_UP} delay={'500ms'}>
-                    {data.map((t, index) => (
+                    {data.split('\n').map((t, index) => (
                         <div key={index} className={'mb-4'}>
                             {t}
                         </div>

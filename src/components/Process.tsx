@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 import { useInView } from 'react-intersection-observer';
-import { ProcessStep } from '@/lib/types';
+import { ProcessStepData } from '@/lib/types';
 import { urlFor } from '@/lib/utils';
 
-type StepProps = Omit<ProcessStep, '_id'> & {
+type StepProps = Omit<ProcessStepData, '_id'> & {
     setCurrentStepIndex: (index: number) => void;
 };
 
 interface ProcessProps {
-    data: ProcessStep[];
+    data: ProcessStepData[];
 }
 
 const Step = ({ stepNumber: stepNumber, header, body, image, setCurrentStepIndex }: StepProps) => {
@@ -36,7 +36,6 @@ const Step = ({ stepNumber: stepNumber, header, body, image, setCurrentStepIndex
 };
 
 export const Process = ({ data }: ProcessProps) => {
-    console.log('process data = ', data);
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [fadingImageIndex, setFadingImageIndex] = useState(0);
     const [fadeOpacity, setFadeOpacity] = useState(1);
