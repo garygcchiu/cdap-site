@@ -71,7 +71,7 @@ const servicesData2 = [
 ];
 
 export default async function Home() {
-    const revalidate = 60; // seconds
+    const revalidate = 10; // seconds
     const getHero = client.fetch<HeroData>(`*[_type == "hero"][0]`, {
         next: { revalidate },
     });
@@ -109,3 +109,5 @@ export default async function Home() {
         </div>
     );
 }
+
+export const revalidate = 10;
